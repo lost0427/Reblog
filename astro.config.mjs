@@ -8,6 +8,6 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://lost0427.github.io',
-    base: '/',
+    base: '/Reblog',
     integrations: [mdx(), sitemap(), tailwind()],
 });
