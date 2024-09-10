@@ -1,0 +1,49 @@
+<button type="button" class="md:hidden dark:text-white mr-5 rounded NavToggle w-[1.5rem] h-[1.5rem] flex flex-col items-center justify-center gap-[0.1875rem]">
+    <div class="w-[0.9375rem] h-[0.125rem] bg-copy-primary rounded-full transition ease-curve-d duration-300 bg-black dark:bg-white" id="Nav0">
+    </div>
+    <div class="w-[0.9375rem] h-[0.125rem] bg-copy-primary rounded-full transition ease-curve-d duration-300 bg-black dark:bg-white " id="Nav1">
+    </div>
+    <div class="w-[0.9375rem] h-[0.125rem] bg-copy-primary rounded-full transition ease-curve-d duration-300 bg-black dark:bg-white" id="Nav2">
+    </div>
+</button>
+
+<script>
+  const buttons = document.querySelectorAll('button.NavToggle');
+  const NavMobile = document.getElementById('NavMobile')!;
+  const NavDesktopH = document.getElementById('NavDesktopH')!;
+  const NavDesktop = document.getElementById('NavDesktop')!;
+  const Nav0 = document.getElementById('Nav0')!;
+  const Nav1 = document.getElementById('Nav1')!;
+  const Nav2 = document.getElementById('Nav2')!;
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      if (NavMobile.classList.contains('hidden')) {
+        NavMobile.classList.remove('hidden');
+        NavDesktop.classList.add('hidden');
+        NavDesktopH.classList.remove('bg-white/70','dark:bg-black/70')
+        NavDesktopH.classList.add('bg-white','dark:bg-black')
+        Nav0.classList.add('rotate-45', 'translate-y-[0.3125rem]')
+        Nav1.classList.add('opacity-0')
+        Nav2.classList.add('-rotate-45', '-translate-y-[0.3125rem]')
+        setTimeout(() => {
+          NavMobile.classList.remove('opacity-0');
+        }, 10);
+    } else {
+        NavMobile.classList.add('opacity-0');
+        NavDesktop.classList.remove('hidden');
+        NavDesktop.classList.add('hidden');
+        NavDesktopH.classList.add('bg-white/70','dark:bg-black/70')
+        NavDesktopH.classList.remove('bg-white','dark:bg-black')
+        Nav0.classList.remove('rotate-45', 'translate-y-[0.3125rem]')
+        Nav1.classList.remove('opacity-0')
+        Nav2.classList.remove('-rotate-45', '-translate-y-[0.3125rem]')
+        setTimeout(() => {
+          NavMobile.classList.add('hidden');
+        }, 300);
+    }
+    });
+  });
+
+</script>
+

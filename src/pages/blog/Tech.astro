@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const TechPosts = posts.filter(post => /^Tech\/.*\.md$/.test(post.id));
+---
+
+<Layout title="abstract page">
+    <main>
+        <section>
+			<div class="flex flex-col items-center my-7 text-2xl">
+				<h1>技术博客</h1>
+			</div>
+            <ul>
+                {
+                    TechPosts.map((post) => (
+                        <li class="flex flex-col items-center">
+                            <a href={`/blog/${post.slug}/`} class="flex flex-col items-center w-10/12 my-5 rounded-lg bg-gray-900">
+                                <img src={post.data.heroImage} alt="" class="rounded-lg w-full" />
+                                <h4 class="title">{post.data.title}</h4>
+                                <p class="date">
+                                    <FormattedDate date={post.data.pubDate} />
+                                </p>
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </section>
+    </main>
+</Layout>

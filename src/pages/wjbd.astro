@@ -1,0 +1,106 @@
+---
+import { onMount } from "astro/client";
+import gsap from "gsap";
+---
+
+<style>
+  .box, .box1, .box2 {
+    @apply w-24 h-24 absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .box {
+    background: linear-gradient(135deg, #ff00ff, #ff7f50);
+    border-left: 0px solid transparent;
+    transition: border-left 0.5s ease;
+  }
+  .box1 {
+    background: linear-gradient(135deg, #ff7f50, #1e90ff);
+    border-left: 0px solid transparent;
+    transition: border-left 0.5s ease;
+  }
+  .box2 {
+    background: linear-gradient(135deg, #1e90ff, #8a2be2);
+    border-left: 0px solid transparent;
+    transition: border-left 0.5s ease;
+  }
+  .overlay {
+    @apply absolute z-50;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(52, 78, 123);
+    transform: translate(-50%, -50%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+  .btn {
+    @apply mt-4 p-2 bg-blue-500 text-white rounded;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+</style>
+
+<div class="overlay" id="hoverArea"></div>
+<div class="box"></div>
+<div class="box1"></div>
+<div class="box2"></div>
+
+<script>
+  import gsap from "gsap";
+
+  function animateOnHover() {
+    gsap.to(".box", {
+      x: 80,
+      y: -120,
+      rotate: -63,
+      duration: 1,
+      borderLeftWidth: "5px",
+      borderLeftColor: "red",
+    });
+    gsap.to(".box1", {
+      x: 155,
+      duration: 1,
+      borderLeftWidth: "5px",
+      borderLeftColor: "red",
+    });
+    gsap.to(".box2", {
+      x: 80,
+      y: 120,
+      rotate: 63,
+      duration: 1,
+      borderLeftWidth: "5px",
+      borderLeftColor: "red",
+    });
+  }
+
+  function resetOnLeave() {
+    gsap.to(".box", {
+      x: 0,
+      y: 0,
+      rotate: 0,
+      duration: 1,
+      borderLeftWidth: "0px",
+      borderLeftColor: "transparent",
+    });
+    gsap.to(".box1", {
+      x: 0,
+      duration: 1,
+      borderLeftWidth: "0px",
+      borderLeftColor: "transparent",
+    });
+    gsap.to(".box2", {
+      x: 0,
+      y: 0,
+      rotate: 0,
+      duration: 1,
+      borderLeftWidth: "0px",
+      borderLeftColor: "transparent",
+    });
+  }
+
+  document.getElementById("hoverArea").addEventListener("mouseenter", animateOnHover);
+  document.getElementById("hoverArea").addEventListener("mouseleave", resetOnLeave);
+</script>

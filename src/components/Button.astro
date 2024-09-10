@@ -1,0 +1,13 @@
+---
+export interface ButtonProps {
+  href: string;
+  text: string;
+  className?: string;
+}
+
+const { href, text, className } = Astro.props as ButtonProps;
+---
+
+<a href={href} class={className}>
+  <h3>{text}</h3>
+</a>
