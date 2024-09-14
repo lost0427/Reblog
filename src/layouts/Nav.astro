@@ -5,11 +5,11 @@ import NavToggle from '../components/NavToggle.astro';
 ---
 <div class="w-full h-12 fixed top-0 left-0 backdrop-blur-xl bg-white/70 dark:bg-black/70 z-50 dark:text-white" id="NavDesktopH">
     <div class="w-full h-full flex justify-between items-center">
-        <ButtonProps href="/" text="Reblog" className="mx-5" />
+        <ButtonProps href="/Reblog" text="Reblog" className="mx-5" />
         <div class="hidden md:flex flex-row" id="NavDesktop">
-            <ButtonProps href="/blog/Abstract" text="抽象" className="text-base px-3" />
-            <ButtonProps href="/blog/Tech" text="技术" className="text-base px-3" />
-            <ButtonProps href="/blog/Life" text="生活" className="text-base px-3" />
+            <ButtonProps href="/Reblog/blog/Abstract" text="抽象" className="text-base px-3" />
+            <ButtonProps href="/Reblog/blog/Tech" text="技术" className="text-base px-3" />
+            <ButtonProps href="/Reblog/blog/Life" text="生活" className="text-base px-3" />
         </div>
         <div class="flex justify-between">
             <div class="mx-5">Search</div>
@@ -20,8 +20,8 @@ import NavToggle from '../components/NavToggle.astro';
 <div class="fixed top-[3.125rem] left-0 w-full h-[1px] bg-nav-line z-[103] bg-white/10"></div>
 <div class="w-full h-full fixed top-12 left-0 backdrop-blur-xl bg-gradient-to-b from-white/100 to-white/50 dark:from-black/100 dark:to-black/50 z-50 hidden opacity-0 transition-opacity duration-500 ease-in-out" id="NavMobile">
     <div class="w-full h-full flex flex-col p-7">
-        <ButtonProps href="/blog/Abstract" text="抽象" className="py-5 text-2xl" />
-        <ButtonProps href="/blog/Tech" text="技术" className="py-5 text-2xl" />
-        <ButtonProps href="/blog/Life" text="生活" className="py-5 text-2xl" />
+        <ButtonProps href="/Reblog/blog/Abstract" text="抽象" className="py-5 text-2xl" />
+        <ButtonProps href="/Reblog/blog/Tech" text="技术" className="py-5 text-2xl" />
+        <ButtonProps href="/Reblog/blog/Life" text="生活" className="py-5 text-2xl" />
     </div>
 </div>
