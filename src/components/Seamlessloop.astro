@@ -1,0 +1,112 @@
+---
+export interface Seamlessloop {
+    box1: string;
+    box2?: string;
+    box3: string;
+    box4?: string;
+    box5: string;
+    box6?: string;
+    box7: string;
+    box8?: string;
+    box9: string;
+    box10?: string;
+    box11?: string;
+}
+const { box1, box2, box3,box4, box5, box6, box7, box8, box9, box10, box11 } = Astro.props as Seamlessloop;
+
+---
+<div class="wrapper">
+  <div class="box">{box1}</div>
+  <div class="box">{box2}</div>
+  <div class="box">{box3}</div>
+  <div class="box">{box4}</div>
+  <div class="box">{box5}</div>
+  <div class="box">{box6}</div>
+  <div class="box">{box7}</div>
+  <div class="box">{box8}</div>
+  <div class="box">{box9}</div>
+  <div class="box">{box10}</div>
+  <div class="box">{box11}</div>
+</div>
+
+<style>
+.wrapper {
+    @apply h-[8%] w-full relative flex items-center overflow-hidden m-2 ;
+}
+.box {
+    @apply flex items-center justify-center h-full w-5/12 md:w-3/12 rounded-lg dark:bg-zinc-900 dark:text-white bg-slate-100 m-2 relative shrink-0 text-lg ;
+}
+
+</style>
+
+<script>
+import gsap from "gsap";
+
+const boxes = gsap.utils.toArray(".box");
+
+gsap.set(boxes, {
+});
+
+const loop = horizontalLoop(boxes, { paused: false, reversed: false });
+
+function horizontalLoop(items, config) {
+  items = gsap.utils.toArray(items);
+  config = config || {};
+  
+  let tl = gsap.timeline({
+    repeat: -1, 
+    paused: config.paused || false,
+    defaults: { ease: "none" },
+    onReverseComplete: () => {
+      tl.totalTime(tl.rawTime() + tl.duration() * 100);
+      }
+    }),
+    length = items.length,
+    startX = items[0].offsetLeft,
+    times: number[] = [],
+    widths: number[] = [],
+    xPercents: number[] = [],
+    pixelsPerSecond = (config.speed || 0.5) * 100,
+    snap = config.snap === false ? v => v : gsap.utils.snap(config.snap || 1),
+    totalWidth, curX, distanceToStart, distanceToLoop, item, i;
+
+  gsap.set(items, {
+    xPercent: (i, el) => {
+        let w = widths[i] = parseFloat(gsap.getProperty(el, "width", "px") as string);
+        const x = parseFloat(gsap.getProperty(el, "x", "px") as string);
+      const xPercent = gsap.getProperty(el, "xPercent");
+
+      xPercents[i] = snap((x / w * 100) + (xPercent as number));
+
+      return xPercents[i];
+    }
+  });
+
+  gsap.set(items, { x: 0 });
+  totalWidth = items[length - 1].offsetLeft + xPercents[length - 1] / 100 * widths[length - 1] - startX + 
+  items[length - 1].offsetWidth * (gsap.getProperty(items[length - 1], "scaleX") as number) + 
+  (config.paddingRight || 0) + 16;
+
+  for (i = 0; i < length; i++) {
+    item = items[i];
+    curX = xPercents[i] / 100 * widths[i];
+    distanceToStart = item.offsetLeft + curX - startX;
+    distanceToLoop = distanceToStart + widths[i] * (gsap.getProperty(item, "scaleX") as number);
+
+    tl.to(item, { xPercent: snap((curX - distanceToLoop) / widths[i] * 100), duration: distanceToLoop / pixelsPerSecond }, 0)
+      .fromTo(item, { xPercent: snap((curX - distanceToLoop + totalWidth) / widths[i] * 100) }, { xPercent: xPercents[i], duration: (curX - distanceToLoop + totalWidth - curX) / pixelsPerSecond, immediateRender: false }, distanceToLoop / pixelsPerSecond)
+      .add("label" + i, distanceToStart / pixelsPerSecond);
+    times[i] = distanceToStart / pixelsPerSecond;
+  }
+
+  tl.times = times;
+  tl.progress(1, true).progress(0, true);
+
+  if (config.reversed) {
+    tl.reverse(0);
+  }
+
+  return tl;
+}
+
+</script>

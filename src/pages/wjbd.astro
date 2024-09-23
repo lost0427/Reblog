@@ -1,106 +1,303 @@
----
-import { onMount } from "astro/client";
-import gsap from "gsap";
----
+<div id="page" class="site">
+
+  <div id="feather" class="feather"></div>
+
+  <header id="masthead" class="site-header" role="banner">
+    <nav class="anchor-nav" role="navigation">
+      <a href="#intro" class="anchor">Home</a>
+      <a href="#panel-1" class="anchor">Panel 1</a>
+      <a href="#panel-3" class="anchor">Panel 3</a>
+      <a href="#panel-5" class="anchor">Panel 5</a>
+      <a href="#map" class="anchor">Map</a>
+    </nav>
+  </header>
+
+  <main id="content" class="site-content" role="main">
+
+    <section id="intro" class="full-screen pt-5 gradient-orange">
+      <h1>A title</h1>
+
+      <div id="clouds-layer-1" class="clouds"></div>
+      <div id="clouds-layer-2" class="clouds"></div>
+    </section>
+
+    <section id="panels">
+
+      <div id="panels-container" style="width: 500%;">
+        <article id="panel-1" class="panel full-screen gradient-green">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+
+                <img src="" alt="">
+
+              </div>
+              <div class="col-6 d-flex flex-column">
+
+                <h2>Panel 1</h2>
+
+                <p class="step-description">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
+                </p>
+
+                <div class="panels-navigation text-right">
+                  <div class="nav-panel" data-sign="plus"><a href="#panel-2" class="anchor">Next</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article id="panel-2" class="panel full-screen gradient-blue">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+
+                <img src="" alt="">
+
+              </div>
+              <div class="col-6 d-flex flex-column">
+
+                <h2>Panel 2</h2>
+
+                <p class="step-description">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
+                </p>
+
+                <div class="panels-navigation">
+                  <div class="nav-panel" data-sign="minus"><a href="#panel-1" class="anchor">Prev</a></div>
+                  <div class="nav-panel" data-sign="plus"><a href="#panel-3" class="anchor">Next</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article id="panel-3" class="panel full-screen gradient-green">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+
+                <img src="" alt="">
+
+              </div>
+              <div class="col-6 d-flex flex-column">
+
+                <h2>Panel 3</h2>
+
+                <p class="step-description">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
+                </p>
+
+                <div class="panels-navigation">
+                  <div class="nav-panel" data-sign="minus"><a href="#panel-2" class="anchor">Prev</a></div>
+                  <div class="nav-panel" data-sign="plus"><a href="#panel-4" class="anchor">Next</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article id="panel-4" class="panel full-screen gradient-blue">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+
+                <img src="" alt="">
+
+              </div>
+              <div class="col-6 d-flex flex-column">
+
+                <h2>Panel 4</h2>
+
+                <p class="step-description">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
+                </p>
+
+                <div class="panels-navigation">
+                  <div class="nav-panel" data-sign="minus"><a href="#panel-3" class="anchor">Prev</a></div>
+                  <div class="nav-panel" data-sign="plus"><a href="#panel-5" class="anchor">Next</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article id="panel-5" class="panel full-screen gradient-green">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+
+                <img src="" alt="">
+
+              </div>
+              <div class="col-6 d-flex flex-column">
+
+                <h2>Panel 5</h2>
+
+                <p class="step-description">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
+                </p>
+
+                <div class="panels-navigation text-right">
+                  <div class="nav-panel" data-sign="minus"><a href="#panel-4" class="anchor">Prev</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="map" class="full-screen gradient-orange"></section>
+
+  </main>
+
+</div>
 
 <style>
-  .box, .box1, .box2 {
-    @apply w-24 h-24 absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .box {
-    background: linear-gradient(135deg, #ff00ff, #ff7f50);
-    border-left: 0px solid transparent;
-    transition: border-left 0.5s ease;
-  }
-  .box1 {
-    background: linear-gradient(135deg, #ff7f50, #1e90ff);
-    border-left: 0px solid transparent;
-    transition: border-left 0.5s ease;
-  }
-  .box2 {
-    background: linear-gradient(135deg, #1e90ff, #8a2be2);
-    border-left: 0px solid transparent;
-    transition: border-left 0.5s ease;
-  }
-  .overlay {
-    @apply absolute z-50;
-    top: 50%;
-    left: 50%;
-    width: 200px;
-    height: 200px;
-    background-color: rgb(52, 78, 123);
-    transform: translate(-50%, -50%);
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  }
-  .btn {
-    @apply mt-4 p-2 bg-blue-500 text-white rounded;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-  }
+  html,
+body {
+  margin: 0;
+  height: 100%;
+  font-weight: 300;
+}
+body {
+  overflow-x: hidden;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+.full-screen {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--color-just-black);
+}
+
+#masthead {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 9999;
+}
+#masthead a {
+  padding: 1rem 2rem;
+}
+
+
+#panels #panels-container {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ddd;
+}
+#panels #panels-container .panel {
+  color: var(--color-just-black);
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  text-align: left;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #f00;
+}
+#panels #panels-container .panel img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+#panels #panels-container .panel .panels-navigation {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+#panels #panels-container .panel .anchor-panel,
+#panels #panels-container .panel .nav-panel {
+  text-transform: uppercase;
+  margin-right: 2rem;
+}
+#panels #panels-container .panels-navigation {
+  position: absolute;
+  width: 100%;
+  bottom: 2rem;
+  right: 2rem;
+}
+
+a {
+  color: var(--color-just-black)
+}
 </style>
 
-<div class="overlay" id="hoverArea"></div>
-<div class="box"></div>
-<div class="box1"></div>
-<div class="box2"></div>
 
 <script>
-  import gsap from "gsap";
+import { gsap } from "gsap";
+    
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-  function animateOnHover() {
-    gsap.to(".box", {
-      x: 80,
-      y: -120,
-      rotate: -63,
-      duration: 1,
-      borderLeftWidth: "5px",
-      borderLeftColor: "red",
-    });
-    gsap.to(".box1", {
-      x: 155,
-      duration: 1,
-      borderLeftWidth: "5px",
-      borderLeftColor: "red",
-    });
-    gsap.to(".box2", {
-      x: 80,
-      y: 120,
-      rotate: 63,
-      duration: 1,
-      borderLeftWidth: "5px",
-      borderLeftColor: "red",
-    });
-  }
 
-  function resetOnLeave() {
-    gsap.to(".box", {
-      x: 0,
-      y: 0,
-      rotate: 0,
-      duration: 1,
-      borderLeftWidth: "0px",
-      borderLeftColor: "transparent",
-    });
-    gsap.to(".box1", {
-      x: 0,
-      duration: 1,
-      borderLeftWidth: "0px",
-      borderLeftColor: "transparent",
-    });
-    gsap.to(".box2", {
-      x: 0,
-      y: 0,
-      rotate: 0,
-      duration: 1,
-      borderLeftWidth: "0px",
-      borderLeftColor: "transparent",
-    });
-  }
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
-  document.getElementById("hoverArea").addEventListener("mouseenter", animateOnHover);
-  document.getElementById("hoverArea").addEventListener("mouseleave", resetOnLeave);
+/* Main navigation */
+let panelsSection = document.querySelector("#panels"),
+	panelsContainer = document.querySelector("#panels-container") as HTMLElement,
+	tween;
+document.querySelectorAll(".anchor").forEach(anchor => {
+	anchor.addEventListener("click", function(e) {
+		e.preventDefault();
+		let targetElem = document.querySelector((e.target as HTMLElement).getAttribute("href")),
+			y = targetElem;
+		if (targetElem && panelsContainer.isSameNode(targetElem.parentElement)) {
+      let totalScroll = tween.scrollTrigger.end - tween.scrollTrigger.start,
+    totalMovement = (panels.length - 1) * (targetElem as HTMLElement).offsetWidth;
+      let y = Math.round(tween.scrollTrigger.start + ((targetElem as HTMLElement).offsetLeft / totalMovement) * totalScroll);
+
+		}
+		gsap.to(window, {
+			scrollTo: {
+				y: y,
+				autoKill: false
+			},
+			duration: 1
+		});
+	});
+});
+
+/* Panels */
+const panels = gsap.utils.toArray("#panels-container .panel");
+tween = gsap.to(panels, {
+	xPercent: -100 * ( panels.length - 1 ),
+	ease: "none",
+	scrollTrigger: {
+		trigger: "#panels-container",
+		pin: true,
+		start: "top top",
+		scrub: 1,
+		snap: {
+			snapTo: 1 / (panels.length - 1),
+			inertia: false,
+			duration: {min: 0.1, max: 0.1}
+		},
+		end: () =>  "+=" + (panelsContainer.offsetWidth - innerWidth)
+	}
+});
 </script>

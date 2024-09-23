@@ -55,9 +55,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			Courier New,
 			monospace;
 	}
-	.h-ssvh{
-		height: calc(100svh - 3rem);
-	}
 	.box {
         width: 100px;
         height: 100px;
@@ -65,3 +62,18 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
       }
 	  
 </style>
+<script>
+import Lenis from 'lenis'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+const lenis = new Lenis()
+
+lenis.on('scroll', ScrollTrigger.update)
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000)
+})
+
+gsap.ticker.lagSmoothing(0)
+</script>
