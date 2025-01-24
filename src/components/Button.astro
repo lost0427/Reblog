@@ -8,6 +8,6 @@ export interface ButtonProps {
 const { href, text, className } = Astro.props as ButtonProps;
 ---
 
-<a href={href} class={className}>
-  <h3>{text}</h3>
+<a href={href} class="no-underline">
+  <h3 class={className}>{text}</h3>
 </a>

@@ -1,51 +1,99 @@
----
-export interface IntroduceUS {}
 
----
-<div class="w-full min-h-ssvh flex flex-col justify-top items-center justify-center">
-    <div>
-        Retrieve0与 Until SoftWare: Relink
-    </div>
-    <div class="w-full flex flex-col items-center text-left text-balance my-5 justify-center">
-        <div class="w-10/12 flex-row items-center hidden md:flex">
-            <div class="">
-                <div class="h-11 flex flex-row -mb-5">
-                    <div class="w-[10%]">
-                    </div>
-                    <div class="bg-slate-300 font-semibold text-black rounded-md content-center -rotate-12 text-3xl px-7" style="background: linear-gradient(153.58deg, #f7bdf8 32.25%, #2f3cc0 92.68%)">
-                        非常
-                    </div>
-                </div>
-                <div class="min-h-11 flex flex-row">
-                    <div style="width: 100px;">
-                    </div>
-                    <div class="bg-slate-300 dark:bg-[#ff8709] font-semibold text-black rounded-md px-8 py-4 content-center text-7xl" style="background: linear-gradient(114.41deg, #0ae448 20.74%, #abff84 65.5%);">
-                        Neboer
-                    </div>
-                </div>
-                <div class="h-11 flex flex-row -mt-2">
-                    <div class="w-[13%]">
-                    </div>
-                    <div class="bg-slate-300 font-semibold text-black rounded-md px-7 content-center text-3xl" style="background: linear-gradient(111.45deg, #ff8709 19.42%, #f7bdf8 73.08%)">
-                        感谢
-                    </div>
-                </div>
-            </div>
-            <img src="/Reblog/Neboer.png" class="rounded-full mx-5 w-44" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Astro Horizontal Scroll Demo (GSAP)</title>
+</head>
+<body>
+
+<!-- 横向容器 -->
+<div class="horizontal-container" id="h-container">
+    <div class="horizontal-inner" id="h-inner">
+        <div class="panel">
+
         </div>
-        <!-- <div class="w-10/12">
-            <div class="h-11">
-
-            </div>
-            <div class="h-11">
-
-            </div>
-            <div class="h-11">
-
-            </div>
-        </div> -->
-    </div>
-    <div class="w-10/12 flex text-center text-balance my-5 justify-center">
-        非常感谢Neboer以及 Until SoftWare: Relink 全体成员对我的帮助，对我的教导，收益颇丰，感激不尽！
+        <div class="panel">Panel 2</div>
+        <div class="panel">Panel 3</div>
+        <div class="panel">Panel 4</div>
     </div>
 </div>
+
+<!-- 脚本：在客户端执行 -->
+<script>
+    import { gsap } from 'gsap'
+    import { ScrollTrigger } from 'gsap/ScrollTrigger'
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 确保 DOM 已经加载
+    document.addEventListener("DOMContentLoaded", () => {
+        const container = document.getElementById("h-container");
+        const inner = document.getElementById("h-inner");
+        const panels = inner.querySelectorAll(".panel");
+        const totalPanels = panels.length;
+
+        // 计算横向滚动总距离
+        const totalScrollWidth = (inner.scrollWidth - window.innerWidth);
+
+        gsap.to(inner, {
+            x: () => -totalScrollWidth,
+            ease: "none", // 不使用缓动，以便滚动时线性跟随
+            scrollTrigger: {
+                trigger: "#h-container",
+                pin: true,               // 在这段滚动中固定（pin）容器
+                scrub: 1,                // 跟随滚动条，数字越大越平滑
+                // snap: 1 / (totalPanels - 1), // 如果想做翻页贴合，可开启 snap
+
+                // 让 pinned 区域的滚动距离足够长，以便把所有 panel“播放”完
+                end: () => "+=" + totalScrollWidth
+            }
+        });
+    });
+</script>
+</body>
+</html>
+
+<style>
+    /* src/styles/global.css */
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        overflow-x: hidden; /* 防止出现水平滚动条 */
+    }
+
+    /* 这是要被 pin 住的容器，内部放横向排列的面板 */
+    .horizontal-container {
+        position: relative;
+        width: 100%;
+        height: 100vh;   /* 一屏高 */
+        overflow: hidden;
+        background: #fafafa;
+    }
+
+    /* 内部容器，用于进行横向动画 */
+    .horizontal-inner {
+        display: flex;
+        height: 100%;
+        width: 400vw; /* 假设有4个面板，每个100vw */
+    }
+
+    /* 每个面板占一整屏宽高，并排放在一起 */
+    .panel {
+        width: 100vw;
+        height: 100vh;
+        flex-shrink: 0; /* 防止面板缩小 */
+        font-size: 2rem;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /* 简单给面板一些背景颜色做区分 */
+    .panel:nth-of-type(1) { background: #f8b400; }
+    .panel:nth-of-type(2) { background: #87ceeb; }
+    .panel:nth-of-type(3) { background: #52b788; }
+    .panel:nth-of-type(4) { background: #ff6f91; }
+
+</style>

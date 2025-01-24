@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import Seamlessloop from '../components/Seamlessloop.astro';
 import Seamlessloop_R from '../components/Seamlessloop_R.astro';
 import IntroduceUS from '../components/IntroduceUS.astro';
+import GitHubRepoInfo from '../components/GitHubRepoInfo.astro';
 ---
 
 <Layout title="Welcome to Astro.">
@@ -86,14 +87,21 @@ import IntroduceUS from '../components/IntroduceUS.astro';
 			<div>来生再见</div>
 			<div>再会</div> -->
 		</div>
-		<IntroduceUS></IntroduceUS>
-		<div class="w-full h-ssvh flex flex-col justify-top items-center justify-center">
+		<!--<div class=" max-w-full overflow-hidden">-->
+		<!--	<IntroduceUS></IntroduceUS>-->
+		<!--</div>-->
+		<div class="w-full min-h-ssvh flex flex-col justify-top items-center justify-center">
 			<div>
 				Retrieve0与 技术
 			</div>
 			<div class="w-10/12 flex text-center text-balance my-5 justify-center">
 				Retrieve0没有什么技术，很菜（至少目前是这样。）Retrieve0在技术上偏向网页设计，主要使用Vue，Astro。Typescript(纯绊脚石，换了：Javascript，前端组件库使用Navie。使用Python编写小软件。
 			</div>
+			<div class="flex flex-wrap justify-center gap-7 max-w-full px-7">
+				<GitHubRepoInfo username="lost0427" repoName="Reblog" />
+				<GitHubRepoInfo username="lost0427" repoName="DormTools" />
+			</div>
+
 		</div>
 		<div class="w-full h-ssvh flex flex-col justify-top items-center justify-center">
 			<div>
@@ -105,3 +113,18 @@ import IntroduceUS from '../components/IntroduceUS.astro';
 		</div>
 	</main>
 </Layout>
+
+<style is:global>
+	:root{
+		--o-white: #f4f4f4;
+		--o-silver:#e3e3e3;
+		--o-gray:#2f2f2f;
+		--o-dark:#171717;
+	}
+.h-ssvh{
+	height: calc(100svh - 3rem);
+}
+.min-h-ssvh{
+	min-height: calc(100svh - 3rem);
+}
+</style>

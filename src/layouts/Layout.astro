@@ -5,7 +5,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
-import BaseHead from '../components/BaseHead.astro';
+// import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
@@ -22,45 +22,20 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	</head>
 	<body>
 		<Nav></Nav>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<!--<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />-->
 		<div class="w-full h-12"/>
 		<slot />
 	</body>
 	<Footer />
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		/* font-family: system-ui, sans-serif; */
-		font-family: Söhne, sans-serif;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+
 	.box {
-        width: 100px;
-        height: 100px;
-        background: red;
-      }
-	  
+		width: 100px;
+		height: 100px;
+		background: red;
+	}
+
 </style>
 <script>
 import Lenis from 'lenis'
@@ -76,4 +51,6 @@ gsap.ticker.add((time) => {
 })
 
 gsap.ticker.lagSmoothing(0)
+
+
 </script>

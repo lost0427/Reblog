@@ -1,6 +1,10 @@
-.h-ssvh{
-    height: calc(100svh - 3rem);
-}
-.min-h-ssvh{
-    min-height: calc(100svh - 3rem);
+
+
+
+
+:root{
+    --o-white: #f4f4f4;
+    --o-silver:#e3e3e3;
+    --o-gray:#2f2f2f;
+    --o-dark:#171717;
 }

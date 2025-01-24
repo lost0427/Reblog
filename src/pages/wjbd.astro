@@ -1,303 +1,112 @@
-<div id="page" class="site">
 
-  <div id="feather" class="feather"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Astro Horizontal Scroll Demo (GSAP)</title>
+</head>
+<body>
+<!-- 上方正常内容 -->
+<div class="spacer">这里是上方的普通内容</div>
 
-  <header id="masthead" class="site-header" role="banner">
-    <nav class="anchor-nav" role="navigation">
-      <a href="#intro" class="anchor">Home</a>
-      <a href="#panel-1" class="anchor">Panel 1</a>
-      <a href="#panel-3" class="anchor">Panel 3</a>
-      <a href="#panel-5" class="anchor">Panel 5</a>
-      <a href="#map" class="anchor">Map</a>
-    </nav>
-  </header>
-
-  <main id="content" class="site-content" role="main">
-
-    <section id="intro" class="full-screen pt-5 gradient-orange">
-      <h1>A title</h1>
-
-      <div id="clouds-layer-1" class="clouds"></div>
-      <div id="clouds-layer-2" class="clouds"></div>
-    </section>
-
-    <section id="panels">
-
-      <div id="panels-container" style="width: 500%;">
-        <article id="panel-1" class="panel full-screen gradient-green">
-          <div class="container">
-            <div class="row">
-              <div class="col-6">
-
-                <img src="" alt="">
-
-              </div>
-              <div class="col-6 d-flex flex-column">
-
-                <h2>Panel 1</h2>
-
-                <p class="step-description">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
-                </p>
-
-                <div class="panels-navigation text-right">
-                  <div class="nav-panel" data-sign="plus"><a href="#panel-2" class="anchor">Next</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article id="panel-2" class="panel full-screen gradient-blue">
-          <div class="container">
-            <div class="row">
-              <div class="col-6">
-
-                <img src="" alt="">
-
-              </div>
-              <div class="col-6 d-flex flex-column">
-
-                <h2>Panel 2</h2>
-
-                <p class="step-description">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
-                </p>
-
-                <div class="panels-navigation">
-                  <div class="nav-panel" data-sign="minus"><a href="#panel-1" class="anchor">Prev</a></div>
-                  <div class="nav-panel" data-sign="plus"><a href="#panel-3" class="anchor">Next</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article id="panel-3" class="panel full-screen gradient-green">
-          <div class="container">
-            <div class="row">
-              <div class="col-6">
-
-                <img src="" alt="">
-
-              </div>
-              <div class="col-6 d-flex flex-column">
-
-                <h2>Panel 3</h2>
-
-                <p class="step-description">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
-                </p>
-
-                <div class="panels-navigation">
-                  <div class="nav-panel" data-sign="minus"><a href="#panel-2" class="anchor">Prev</a></div>
-                  <div class="nav-panel" data-sign="plus"><a href="#panel-4" class="anchor">Next</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article id="panel-4" class="panel full-screen gradient-blue">
-          <div class="container">
-            <div class="row">
-              <div class="col-6">
-
-                <img src="" alt="">
-
-              </div>
-              <div class="col-6 d-flex flex-column">
-
-                <h2>Panel 4</h2>
-
-                <p class="step-description">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
-                </p>
-
-                <div class="panels-navigation">
-                  <div class="nav-panel" data-sign="minus"><a href="#panel-3" class="anchor">Prev</a></div>
-                  <div class="nav-panel" data-sign="plus"><a href="#panel-5" class="anchor">Next</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article id="panel-5" class="panel full-screen gradient-green">
-          <div class="container">
-            <div class="row">
-              <div class="col-6">
-
-                <img src="" alt="">
-
-              </div>
-              <div class="col-6 d-flex flex-column">
-
-                <h2>Panel 5</h2>
-
-                <p class="step-description">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
-                </p>
-
-                <div class="panels-navigation text-right">
-                  <div class="nav-panel" data-sign="minus"><a href="#panel-4" class="anchor">Prev</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="map" class="full-screen gradient-orange"></section>
-
-  </main>
-
+<!-- 横向容器 -->
+<div class="horizontal-container" id="h-container">
+    <div class="horizontal-inner" id="h-inner">
+        <div class="panel">Panel 1</div>
+        <div class="panel">Panel 2</div>
+        <div class="panel">Panel 3</div>
+        <div class="panel">Panel 4</div>
+    </div>
 </div>
 
-<style>
-  html,
-body {
-  margin: 0;
-  height: 100%;
-  font-weight: 300;
-}
-body {
-  overflow-x: hidden;
-}
+<!-- 下方正常内容 -->
+<div class="spacer">这里是下方的普通内容</div>
 
-h1,
-h2 {
-  text-align: center;
-}
-
-.full-screen {
-  display: block;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-#intro {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: var(--color-just-black);
-}
-
-#masthead {
-  position: fixed;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  z-index: 9999;
-}
-#masthead a {
-  padding: 1rem 2rem;
-}
-
-
-#panels #panels-container {
-  height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  padding: 0;
-  overflow: hidden;
-  background-color: #ddd;
-}
-#panels #panels-container .panel {
-  color: var(--color-just-black);
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  text-align: left;
-  align-items: center;
-  justify-content: center;
-  border-right: 1px solid #f00;
-}
-#panels #panels-container .panel img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-#panels #panels-container .panel .panels-navigation {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-}
-#panels #panels-container .panel .anchor-panel,
-#panels #panels-container .panel .nav-panel {
-  text-transform: uppercase;
-  margin-right: 2rem;
-}
-#panels #panels-container .panels-navigation {
-  position: absolute;
-  width: 100%;
-  bottom: 2rem;
-  right: 2rem;
-}
-
-a {
-  color: var(--color-just-black)
-}
-</style>
-
-
+<!-- 脚本：在客户端执行 -->
 <script>
-import { gsap } from "gsap";
-    
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+    import { gsap } from 'gsap'
+    import { ScrollTrigger } from 'gsap/ScrollTrigger'
+    gsap.registerPlugin(ScrollTrigger);
 
+    // 确保 DOM 已经加载
+    document.addEventListener("DOMContentLoaded", () => {
+        const container = document.getElementById("h-container");
+        const inner = document.getElementById("h-inner");
+        const panels = inner.querySelectorAll(".panel");
+        const totalPanels = panels.length;
 
-gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+        // 计算横向滚动总距离
+        const totalScrollWidth = (inner.scrollWidth - window.innerWidth);
 
-/* Main navigation */
-let panelsSection = document.querySelector("#panels"),
-	panelsContainer = document.querySelector("#panels-container") as HTMLElement,
-	tween;
-document.querySelectorAll(".anchor").forEach(anchor => {
-	anchor.addEventListener("click", function(e) {
-		e.preventDefault();
-		let targetElem = document.querySelector((e.target as HTMLElement).getAttribute("href")),
-			y = targetElem;
-		if (targetElem && panelsContainer.isSameNode(targetElem.parentElement)) {
-      let totalScroll = tween.scrollTrigger.end - tween.scrollTrigger.start,
-    totalMovement = (panels.length - 1) * (targetElem as HTMLElement).offsetWidth;
-      let y = Math.round(tween.scrollTrigger.start + ((targetElem as HTMLElement).offsetLeft / totalMovement) * totalScroll);
+        gsap.to(inner, {
+            x: () => -totalScrollWidth,
+            ease: "none", // 不使用缓动，以便滚动时线性跟随
+            scrollTrigger: {
+                trigger: "#h-container",
+                pin: true,               // 在这段滚动中固定（pin）容器
+                scrub: 1,                // 跟随滚动条，数字越大越平滑
+                // snap: 1 / (totalPanels - 1), // 如果想做翻页贴合，可开启 snap
 
-		}
-		gsap.to(window, {
-			scrollTo: {
-				y: y,
-				autoKill: false
-			},
-			duration: 1
-		});
-	});
-});
-
-/* Panels */
-const panels = gsap.utils.toArray("#panels-container .panel");
-tween = gsap.to(panels, {
-	xPercent: -100 * ( panels.length - 1 ),
-	ease: "none",
-	scrollTrigger: {
-		trigger: "#panels-container",
-		pin: true,
-		start: "top top",
-		scrub: 1,
-		snap: {
-			snapTo: 1 / (panels.length - 1),
-			inertia: false,
-			duration: {min: 0.1, max: 0.1}
-		},
-		end: () =>  "+=" + (panelsContainer.offsetWidth - innerWidth)
-	}
-});
+                // 让 pinned 区域的滚动距离足够长，以便把所有 panel“播放”完
+                end: () => "+=" + totalScrollWidth
+            }
+        });
+    });
 </script>
+</body>
+</html>
+
+<style>
+    /* src/styles/global.css */
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        overflow-x: hidden; /* 防止出现水平滚动条 */
+    }
+
+    /* 让前后有一些正常的内容区，以观察滚动 */
+    .spacer {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ddd;
+        font-size: 2rem;
+    }
+
+    /* 这是要被 pin 住的容器，内部放横向排列的面板 */
+    .horizontal-container {
+        position: relative;
+        width: 100%;
+        height: 100vh;   /* 一屏高 */
+        overflow: hidden;
+        background: #fafafa;
+    }
+
+    /* 内部容器，用于进行横向动画 */
+    .horizontal-inner {
+        display: flex;
+        height: 100%;
+        width: 400vw; /* 假设有4个面板，每个100vw */
+    }
+
+    /* 每个面板占一整屏宽高，并排放在一起 */
+    .panel {
+        width: 100vw;
+        height: 100vh;
+        flex-shrink: 0; /* 防止面板缩小 */
+        font-size: 2rem;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /* 简单给面板一些背景颜色做区分 */
+    .panel:nth-of-type(1) { background: #f8b400; }
+    .panel:nth-of-type(2) { background: #87ceeb; }
+    .panel:nth-of-type(3) { background: #52b788; }
+    .panel:nth-of-type(4) { background: #ff6f91; }
+
+</style>

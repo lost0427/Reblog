@@ -1,0 +1,54 @@
+---
+const { username, repoName } = Astro.props;
+
+const apiUrl = `https://api.github.com/repos/${username}/${repoName}`;
+let repoInfo = {};
+
+try {
+    const response = await fetch(apiUrl);
+    if (response.ok) {
+        repoInfo = await response.json();
+    } else {
+        repoInfo = { error: '无法加载仓库信息' };
+    }
+} catch (error) {
+    repoInfo = { error: '获取 GitHub 项目信息失败' };
+}
+---
+
+<div class="github-repo-card w-[30rem] rounded-lg my-5 bg-[#e3e3e3] dark:bg-[#171717] shadow-md hover:-translate-y-1 hover:shadow-lg transition-transform duration-200 ease-in-out">
+    {repoInfo.error ? (
+            <p class="error text-[#d73a49] text-sm text-dark dark:text-white">{repoInfo.error}</p>
+    ) : (
+            <>
+                <div class="header py-3 px-4 bg-[#f4f4f4] dark:bg-[#2f2f2f] rounded-t-lg">
+                    <h3 class="text-xs">
+                        <a href={repoInfo.html_url} target="_blank" class="text-dark dark:text-white hover:underline">{repoInfo.name}</a>
+                    </h3>
+                </div>
+                <div class="info px-4 py-3  text-dark dark:text-white overflow-auto">
+                    <p class="description text-sm mb-3">{repoInfo.description || '没有描述'}</p>
+                    <p class="text-sm"><strong>语言:</strong> {repoInfo.language || '未知'}</p>
+                    <p class="text-sm"><strong>⭐ Stars:</strong> {repoInfo.stargazers_count}</p>
+                    <p class="text-sm"><strong>🍴 Forks:</strong> {repoInfo.forks_count}</p>
+                    <p class="text-sm"><strong>更新时间:</strong> {new Date(repoInfo.updated_at).toLocaleDateString()}</p>
+                </div>
+                <div class="footer py-3 px-4">
+                    <a href={repoInfo.html_url} target="_blank" class="btn inline-block py-2 px-4 bg-[#28a745] text-white font-bold text-sm rounded-lg transition-colors duration-200 ease-in-out hover:bg-[#218838] dark:hover:bg-[#218838]">
+                        访问 GitHub
+                    </a>
+                </div>
+            </>
+    )}
+</div>
+
+<style>
+    .github-repo-card .header h3 a {
+        text-decoration: none;
+    }
+
+    .github-repo-card .error {
+        color: #d73a49;
+        font-size: 0.9rem;
+    }
+</style>
