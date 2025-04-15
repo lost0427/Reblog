@@ -40,6 +40,10 @@ https://github.com/SillyTavern/SillyTavern
 
 链接，账号密码在群里，此服务不是常开
 
+中文社区(类脑社区)：
+
+https://discord.com/app/invite-with-guild-onboarding/dNfheFUe9M
+
 <br>
 
 ---
